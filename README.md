@@ -99,12 +99,10 @@ pip install pillow requests
 --
 
 ## 🔹 Suggested additional files
-- **`requirements.txt`**
-```
 
+```
 pillow
 requests
-
 ```
 
 
