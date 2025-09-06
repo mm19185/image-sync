@@ -21,12 +21,12 @@
                 "sharpness": 1.1
                 }      
         },
-    "ftp": {    
-        "host": "your_FTP_host",    
-        "username": "your_FTP_user_name",    
-        "password": "your_FTP_password",    
-        "upload_path": "/upload/directory"  
-    },  
+    "ftp": {
+        "host": "ftp.example.com",
+        "username": "user",
+        "password": "password",
+        "upload_path": "/upload/path/"
+  },
     "log_file": "/path/to/logs/image_sync_{{timestamp}}.log",
     "archive_retention_days": 7
 }
