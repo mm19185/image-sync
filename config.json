@@ -1,0 +1,32 @@
+{
+    "image_urls": [
+        "https://path/to/image.jpg",
+        "https://path/to/image2.jpg"
+    ],
+    "resize_to": [1920, 1920],
+    "unsharp_mask": {
+        "radius": 30,
+        "percent": 40,
+        "threshold": 5
+    },
+    "enhancements": {
+        "default": {
+                "apply_autocontrast": true,
+                "sharpness": 1.1,
+                "contrast": 1.0,
+                "brightness": 1.0,
+                "color": 1.05
+                },
+        "St_Lawrence.truecolor.jpg": {
+                "sharpness": 1.1
+                }      
+        },
+    "ftp": {    
+        "host": "your_FTP_host",    
+        "username": "your_FTP_user_name",    
+        "password": "your_FTP_password",    
+        "upload_path": "/upload/directory"  
+    },  
+    "log_file": "/path/to/logs/image_sync_{{timestamp}}.log",
+    "archive_retention_days": 7
+}
