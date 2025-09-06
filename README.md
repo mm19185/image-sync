@@ -1,4 +1,3 @@
-```markdown
 # image_sync
 
 A Python utility to **download, process, archive, and upload images** from configurable sources.  
@@ -20,8 +19,8 @@ Designed for weather/satellite/monitoring feeds, but easily adaptable for other 
 ## 📂 Project Structure
 ```
 
-image\_sync/
-├── image\_sync.py        # Main script
+image_sync/
+├── image_sync.py        # Main script
 ├── config.json          # Configuration (URLs, FTP, enhancements)
 ├── output/              # Latest processed images
 ├── archive/             # Timestamped archived images
@@ -37,7 +36,7 @@ Example:
 ```json
 {
   "image_urls": [
-    "https://weather.cod.edu/data/satellite/.../current/example.jpg"
+    "https://path/to/image.jpg"
   ],
   "resize_to": [1920, 1920],
   "unsharp_mask": {
@@ -58,7 +57,7 @@ Example:
     "host": "ftp.example.com",
     "username": "user",
     "password": "password",
-    "upload_path": "/backup/image_sync/"
+    "upload_path": "/upload/path/"
   },
   "log_file": "/path/to/logs/image_sync_{{timestamp}}.log",
   "archive_retention_days": 7
