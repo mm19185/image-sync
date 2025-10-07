@@ -1,3 +1,20 @@
+# Python version
 python>=3.8
-pillow>=9.0.0
-requests>=2.25.0
+
+# Image processing
+Pillow>=9.0.0          # For resizing, cropping, autocontrast, unsharp_mask, and enhancements
+
+# HTTP requests
+requests>=2.25.0        # For downloading images
+
+# Scheduling
+schedule>=1.1.0         # For simple interval scheduling
+APScheduler>=3.9.1      # Optional, more advanced scheduling if you switch to cron-style jobs
+
+# FTP/SFTP
+# Standard FTP is supported by ftplib (built-in), but for SFTP or advanced FTP features:
+paramiko>=3.1.0         # For SFTP support
+aioftp>=0.23.0          # Optional, for asynchronous FTP uploads
+
+# Optional utilities
+tqdm>=4.65.0            # For progress bars during downloads/uploads (optional, nice for CLI)
