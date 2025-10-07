@@ -1,103 +1,127 @@
 {
-  // ==============================
-  // 📁 General Settings
-  // ==============================
-  "download_dir": "./downloads",         // Where downloaded images are saved before processing
-  "processed_dir": "./processed",        // Directory for processed images before upload
-  "archive_dir": "./archive",            // Archive location for timestamped backups
-  "hash_file": "processed_hashes.json",  // Tracks processed files with timestamps to skip duplicates
-  "log_file": "processor.log",           // Main log file
-
-  // ==============================
-  // ⏱️ Scheduling & Automation
-  // ==============================
-  "schedule": {
-    "enabled": true,                     // Enable built-in scheduling (otherwise run manually or via cron)
-    "process_interval_minutes": 60,      // How often to run image download/processing/upload cycle
-    "cleanup_time": "03:00"              // Daily time for archive cleanup (24h format)
-  },
-
-  // ==============================
-  // 🌐 Download Settings
-  // ==============================
-  "download": {
-    "retries": 3,                        // Number of retry attempts for failed downloads
-    "retry_delay": 10,                   // Seconds to wait between retries
-    "timeout": 30,                       // Timeout in seconds per request
-    "force_redownload_hours": 6,        // Redownload an image if last fetch is older than this (even if hash matches)
-    "headers": {                         // Optional custom HTTP headers (e.g., some servers require User-Agent)
-      "User-Agent": "ImageProcessor/2.0"
-    }
-  },
-
-  // ==============================
-  // 🖼️ Image Processing Settings
-  // ==============================
-  "processing": {
-    "max_dimension": 4000,              // Upscale images smaller than this dimension before processing
-    "final_resolution": 1920,           // Downscale final image to this resolution
-    "auto_contrast": true,              // Auto-adjust contrast for better visual quality
-    "enhancements": {                   // Default enhancement values (0.0 = no change, 1.0 = normal)
-      "sharpness": 1.2,
-      "contrast": 1.1,
-      "brightness": 1.0,
-      "color": 1.0
+    "ftp": {
+        "host": “HOST”,
+        "port": 21,
+        "username": “USER_NAME”,
+        "password": “PASSWORD”,
+        "remote_directory": “/remote”/path,
+        "max_retries": 3,
+        "timeout": 30,
+        "concurrent_uploads": 8
+     },
+     "local_upload_files": [
+         “/path/to/local-image1.png",
+         “/path/to/local-image2.png"
+    ],
+    "retention": {
+    "archive_after_upload": true
     },
-    "unsharp_mask": {
-      "enabled": true,
-      "radius": 2.0,
-      "percent": 150,
-      "threshold": 3
-    }
-  },
-
-  // ==============================
-  // 📤 FTP Upload Settings
-  // ==============================
-  "ftp": {
-    "enabled": true,                     // Enable or disable FTP upload
-    "host": "ftp.example.com",           // FTP server hostname or IP
-    "port": 21,                          // FTP port (21 is default)
-    "username": "YOUR_USERNAME",         // FTP username (placeholder)
-    "password": "YOUR_PASSWORD",         // FTP password (placeholder)
-    "remote_dir": "/remote/upload/path", // Remote directory for uploads
-    "timeout": 30,                       // Upload timeout (seconds)
-    "retries": 3,                        // Upload retry attempts
-    "retry_delay": 10,                   // Delay between retries (seconds)
-    "concurrent_uploads": 4,            // Number of simultaneous uploads
-    "delete_after_upload": false        // Delete processed files after successful upload
-  },
-
-  // ==============================
-  // 🗃️ Archiving & Retention
-  // ==============================
-  "retention": {
-    "delete_downloads_after_days": 7,    // Delete downloaded originals older than this many days
-    "delete_processed_after_days": 7,    // Delete processed files older than this many days
-    "delete_archives_after_days": 30     // Delete archived images older than this many days
-  },
-
-  // ==============================
-  // 📁 Image List (Per-Image Settings)
-  // ==============================
-  "images": [
-    {
-      "name": "satellite_image",                        // A name used in logs and output filenames
-      "url": "https://example.com/image.jpg",          // Source URL
-      "output_name": "satellite_latest.jpg",           // Optional custom output filename
-      "crop_box": [0, 0, 1920, 1080],                  // Optional crop (left, top, right, bottom)
-      "auto_contrast": true,                           // Override global auto_contrast
-      "enhancements": {                                // Override global enhancements for this image
-        "sharpness": 1.3,
-        "contrast": 1.15
-      },
-      "final_resolution": 2560                         // Override final resolution for this image
+    "processing": {
+         "unsharp_mask": {
+            "radius": 0,
+            "percent": 0,
+            "threshold": 0
+        },
+        "enhancements": {
+            "default": {
+                "apply_autocontrast": true,
+                "sharpness": 1.0,
+                "contrast": 1.0,
+                "brightness": 1.0,
+                "color": 1.00
+            }
+        }
     },
-    {
-      "name": "radar_overlay",
-      "url": "https://example.com/radar.png",
-      "output_name": "radar_overlay.png",
-      "auto_contrast": false
-    }
-  ]
+    "download": {
+        "max_retries": 24,
+        "timeout": 3600,
+        "user_agent": "ImageProcessor/2.0”
+    },
+    "retention": {
+        "days_to_keep": 14,
+        "cleanup_on_start": true,
+        "delete_after_upload": true
+    },
+    "logging": {
+        "level": "INFO",
+        "file": "image_processor.log",
+        "console": true
+    },
+    "schedule": {
+        "interval_minutes": 1
+    },
+    "images": [
+        {
+            "url": "https://www.website.com/image1.jpg",
+            "filename": “image1.webp",
+            "settings": {
+                "resize_to": [
+                    1920,
+                    1920
+                ],
+                "crop_box": null,
+                "unsharp_mask": {
+                    "radius": 4,
+                    "percent": 100,
+                    "threshold": 10
+                },
+                "enhancements": {
+                    "apply_autocontrast": true,
+                    "sharpness": 1.0,
+                    "contrast": 1.0,
+                    "brightness": 1.0,
+                    "color": 1.05
+                },
+                "quality": 70
+            }
+        },
+                {
+            "url": "https://www.website2.com/image2.jpg",
+            "filename": “image2.webp",
+            "settings": {
+                "resize_to": [
+                    1920,
+                    1920
+                ],
+                "crop_box": [0, 850, 2700, 0],
+                "unsharp_mask": {
+                    "radius": 4,
+                    "percent": 100,
+                    "threshold": 10
+                },
+                "enhancements": {
+                    "apply_autocontrast": true,
+                    "sharpness": 1.0,
+                    "contrast": 1.0,
+                    "brightness": 1.0,
+                    "color": 1.05
+                },
+                "quality": 70
+            }
+        },
+        {
+            "url": "https://www.www.website3.com/image3.jpeg",
+            "filename": “image3.webp",
+            "settings": {
+                "crop_box": null,
+                "unsharp_mask": {
+                    "radius": 1,
+                    "percent": 25,
+                    "threshold": 10
+                },
+                "resize_to": [
+                    1920,
+                    1920
+                ],
+                "enhancements": {
+                    "apply_autocontrast": true,
+                    "sharpness": 1.0,
+                    "contrast": 1.0,
+                    "brightness": 1.0,
+                    "color": 1.05
+                },
+                "quality": 70
+            }
+        }
+    ]
 }
