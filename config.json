@@ -1,23 +1,26 @@
 {
     "ftp": {
-        "host": “HOST”,
+        "host": "HOST",
         "port": 21,
-        "username": “USER_NAME”,
-        "password": “PASSWORD”,
-        "remote_directory": “/remote”/path,
+        "username": "USER_NAME",
+        "password": "PASSWORD",
+        "remote_directory": "/remote/path",
         "max_retries": 3,
         "timeout": 30,
         "concurrent_uploads": 8
-     },
-     "local_upload_files": [
-         “/path/to/local-image1.png",
-         “/path/to/local-image2.png"
+    },
+    "local_upload_files": [
+        "/path/to/local-image1.png",
+        "/path/to/local-image2.png"
     ],
     "retention": {
-    "archive_after_upload": true
+        "archive_after_upload": true,
+        "days_to_keep": 14,
+        "cleanup_on_start": true,
+        "delete_after_upload": true
     },
     "processing": {
-         "unsharp_mask": {
+        "unsharp_mask": {
             "radius": 0,
             "percent": 0,
             "threshold": 0
@@ -28,19 +31,14 @@
                 "sharpness": 1.0,
                 "contrast": 1.0,
                 "brightness": 1.0,
-                "color": 1.00
+                "color": 1.0
             }
         }
     },
     "download": {
         "max_retries": 24,
         "timeout": 3600,
-        "user_agent": "ImageProcessor/2.0”
-    },
-    "retention": {
-        "days_to_keep": 14,
-        "cleanup_on_start": true,
-        "delete_after_upload": true
+        "user_agent": "ImageProcessor/2.0"
     },
     "logging": {
         "level": "INFO",
@@ -53,73 +51,34 @@
     "images": [
         {
             "url": "https://www.website.com/image1.jpg",
-            "filename": “image1.webp",
+            "filename": "image1.webp",
             "settings": {
-                "resize_to": [
-                    1920,
-                    1920
-                ],
+                "resize_to": [1920, 1920],
                 "crop_box": null,
-                "unsharp_mask": {
-                    "radius": 4,
-                    "percent": 100,
-                    "threshold": 10
-                },
-                "enhancements": {
-                    "apply_autocontrast": true,
-                    "sharpness": 1.0,
-                    "contrast": 1.0,
-                    "brightness": 1.0,
-                    "color": 1.05
-                },
-                "quality": 70
-            }
-        },
-                {
-            "url": "https://www.website2.com/image2.jpg",
-            "filename": “image2.webp",
-            "settings": {
-                "resize_to": [
-                    1920,
-                    1920
-                ],
-                "crop_box": [0, 850, 2700, 0],
-                "unsharp_mask": {
-                    "radius": 4,
-                    "percent": 100,
-                    "threshold": 10
-                },
-                "enhancements": {
-                    "apply_autocontrast": true,
-                    "sharpness": 1.0,
-                    "contrast": 1.0,
-                    "brightness": 1.0,
-                    "color": 1.05
-                },
+                "unsharp_mask": {"radius": 4, "percent": 100, "threshold": 10},
+                "enhancements": {"apply_autocontrast": true, "sharpness": 1.0, "contrast": 1.0, "brightness": 1.0, "color": 1.05},
                 "quality": 70
             }
         },
         {
-            "url": "https://www.www.website3.com/image3.jpeg",
-            "filename": “image3.webp",
+            "url": "https://www.website2.com/image2.jpg",
+            "filename": "image2.webp",
             "settings": {
+                "resize_to": [1920, 1920],
+                "crop_box": [0, 850, 2700, 0],
+                "unsharp_mask": {"radius": 4, "percent": 100, "threshold": 10},
+                "enhancements": {"apply_autocontrast": true, "sharpness": 1.0, "contrast": 1.0, "brightness": 1.0, "color": 1.05},
+                "quality": 70
+            }
+        },
+        {
+            "url": "https://www.website3.com/image3.jpeg",
+            "filename": "image3.webp",
+            "settings": {
+                "resize_to": [1920, 1920],
                 "crop_box": null,
-                "unsharp_mask": {
-                    "radius": 1,
-                    "percent": 25,
-                    "threshold": 10
-                },
-                "resize_to": [
-                    1920,
-                    1920
-                ],
-                "enhancements": {
-                    "apply_autocontrast": true,
-                    "sharpness": 1.0,
-                    "contrast": 1.0,
-                    "brightness": 1.0,
-                    "color": 1.05
-                },
+                "unsharp_mask": {"radius": 1, "percent": 25, "threshold": 10},
+                "enhancements": {"apply_autocontrast": true, "sharpness": 1.0, "contrast": 1.0, "brightness": 1.0, "color": 1.05},
                 "quality": 70
             }
         }
