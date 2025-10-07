@@ -1,6 +1,6 @@
-# 📦 Release 2.0 — Major Refactor & Feature Expansion
+# 📦 Release 2.0 — Major Refactor & New Features
 
-This release is a complete overhaul. The new version introduces a class-based architecture, vastly improved reliability, richer configuration options, smarter processing logic, and many new features designed for production-grade automation.
+This is a complete overhaul. The new version introduces a class-based architecture, vastly improved reliability, richer configuration options, smarter processing logic, and many new features designed for production-grade automation.
 
 ---
 
